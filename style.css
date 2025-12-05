@@ -2,10 +2,7 @@
     --bg-color: #121212;
     --card-bg: #1e1e1e;
     --text-main: #e0e0e0;
-    --text-muted: #a0a0a0;
-    --accent-dc: #0078f2;
-    --accent-marvel: #ec1d24;
-    --accent-indie: #00b300;
+    --accent: #3b82f6; /* Un azul genérico para hover */
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -15,12 +12,11 @@ body {
     color: var(--text-main);
     margin: 0;
     padding: 0;
-    line-height: 1.6;
 }
 
 header {
     text-align: center;
-    padding: 60px 20px;
+    padding: 60px 20px 40px;
     background: linear-gradient(to bottom, #1a1a1a, var(--bg-color));
     border-bottom: 1px solid #333;
 }
@@ -34,8 +30,7 @@ h1 {
 }
 
 p.subtitle {
-    color: var(--text-muted);
-    font-size: 1.1rem;
+    color: #888;
     margin-top: 10px;
 }
 
@@ -43,60 +38,30 @@ main {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px;
-    min-height: 60vh;
 }
 
-/* Títulos de Categoría */
-.category-title {
-    font-size: 1.8rem;
-    margin-top: 50px;
-    margin-bottom: 25px;
-    padding-left: 15px;
-    border-left: 5px solid #fff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.dc-title {
-    border-color: var(--accent-dc);
-    color: var(--text-main);
-}
-
-.marvel-title {
-    border-color: var(--accent-marvel);
-    color: var(--text-main);
-}
-
-.indie-title {
-    border-color: var(--accent-indie);
-    color: var(--text-main);
-}
-
-/* Grid System */
+/* Grilla Unificada */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 25px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-/* Cards */
 .comic-card {
     background-color: var(--card-bg);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     transition: var(--transition);
     border: 1px solid #333;
     display: flex;
     flex-direction: column;
     height: 100%;
-    position: relative;
 }
 
 .comic-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.5);
     border-color: #555;
     z-index: 2;
 }
@@ -104,7 +69,6 @@ main {
 .card-image-container {
     width: 100%;
     padding-top: 150%;
-    /* Aspect Ratio 2:3 estándar de cómics */
     position: relative;
     background-color: #000;
 }
@@ -116,8 +80,20 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Clave para que la imagen ocupe todo sin deformarse */
-    transition: opacity 0.3s;
+}
+
+.price-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #4caf50;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    border: 1px solid #4caf50;
+    backdrop-filter: blur(4px);
 }
 
 .card-content {
@@ -127,28 +103,23 @@ main {
     flex-grow: 1;
 }
 
-.comic-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-
 .comic-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     margin: 0 0 15px 0;
     line-height: 1.4;
     color: #fff;
+    /* Limitar titulo a 3 lineas para uniformidad */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Botones */
 .btn-link {
     margin-top: auto;
-    display: inline-block;
+    display: block;
     width: 100%;
     padding: 10px 0;
     text-align: center;
@@ -156,43 +127,20 @@ main {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: background 0.2s, filter 0.2s;
     background-color: #333;
     color: #fff;
-    box-sizing: border-box;
-    /* Para que el padding no rompa el ancho */
+    transition: background 0.2s;
 }
 
 .btn-link:hover {
-    filter: brightness(1.2);
-}
-
-.btn-dc {
-    background-color: var(--accent-dc);
-}
-
-.btn-marvel {
-    background-color: var(--accent-marvel);
-}
-
-.btn-indie {
-    background-color: var(--accent-indie);
-    color: #0a0a0a;
-}
-
-/* Loader y Footer */
-.loader {
-    text-align: center;
-    color: #666;
-    font-style: italic;
-    margin-top: 50px;
+    background-color: var(--accent);
+    color: white;
 }
 
 footer {
     text-align: center;
     padding: 40px;
     color: #666;
-    font-size: 0.9rem;
     border-top: 1px solid #333;
     margin-top: 40px;
 }
