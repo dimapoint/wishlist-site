@@ -144,3 +144,58 @@ footer {
     border-top: 1px solid #333;
     margin-top: 40px;
 }
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    header {
+        padding: 40px 15px 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 20px 15px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+    }
+
+    .comic-title {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        padding: 30px 15px;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .gallery-grid {
+        /* On very small screens, 2 columns is probably best */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card-content {
+        padding: 10px;
+    }
+
+    .comic-title {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+
+    .btn-link {
+        padding: 8px 0;
+        font-size: 0.8rem;
+    }
+}

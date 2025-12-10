@@ -1,4 +1,9 @@
 const comicsData = [{
+	"title": "Cafe de Especialidad en grano",
+	"url": "https://johnandjoe.com.ar/productos/blend-paws-en-doy-pack/",
+	"image": "https://acdn-us.mitiendanube.com/stores/001/393/528/products/doypack_blend-paws-e44e0d69a354cdb63117436885908643-1024-1024.webp",
+	"price": "$ 22.500"
+}, {
 	"title": "Crimen y castigo (Vintage)",
 	"url": "https://www.penguinlibros.com/ar/grandes-clasicos/384902-libro-crimen-y-castigo-vintage-9789873952890",
 	"image": "https://www.penguinlibros.com/ar/6221162-thickbox_default/crimen-y-castigo-vintage.webp",
@@ -329,7 +334,7 @@ const comicsData = [{
 		"price": "$ 13.900"
 	},
 	{
-		"title": "GREEN ARROW: EL ARCO DEL CAZADOR (Mike Grell)(On demand)",
+		"title": "GREEN ARROW: EL ARCO DEL CAZADOR",
 		"url": "https://www.lacasitadelcoleccionista.com.ar/comics/europeo-importado/ecc/green-arrow-el-arco-del-cazador-mike-grellon-demand",
 		"image": "https://d22fxaf9t8d39k.cloudfront.net/4f76642bbaa782a7783eca131d2cdce69a5902b5f00ba75dd25eaee6a3b0530529948.jpg",
 		"price": "$ 12.000"
