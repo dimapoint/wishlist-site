@@ -5,73 +5,68 @@ import requests
 from bs4 import BeautifulSoup
 
 # --- TUS LINKS (Cómics y Libros) ---
-links_dict = {
-    "Cómics (La Casita)": [
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/crisis-en-tierras-infinitas-papel-obra",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/absolute-flash-vol01",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/universo-batman",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-historias-de-fantasmas",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-de-scott-snyder-vol05-superpesado",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-estado-de-miedo",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ano-dos",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/crisis-oscura-en-tierras-infinitas-vol03-tomo-final",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-caballero-blanco-del-futuro",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-knightfall-la-caida-del-caballero-vol-01",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-inc",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-shaman",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-presa",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/aquaman-ano-uno",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ano-tres",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-el-regreso-del-caballero-oscuro-tercera-ed",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-gotico",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-y-los-outsiders",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-01-el-acertijo",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-02-dos-caras",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/wonder-woman-tierra-muerta",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-06-bane",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-la-guerra-de-gotham-camino-a-poder-absoluto",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/titanes-la-reina-de-alas-negras-camino-a-poder-absoluto",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-08-ra-s-al-ghul",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-prisiones-oscuras",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/superman-la-casa-de-brainiac-con-comic-de-regalo",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-detective-comics-gotham-nocturna-acto-segundo",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/poder-absoluto",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-poder-absoluto",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-01-en-el-infierno",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/the-ultimates-vol01-cambiando-al-mundo",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/wonder-woman-de-tom-king-01-fuera-de-la-ley",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-detective-comics-04-gotham-nocturna-interludio",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/titanes-mundo-bestia-camino-a-poder-absoluto",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-una-muerte-en-la-familia-robin-vive",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/ultimate-spider-man-vol-02-the-paper",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ciudad-moribunda",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/watchmen-2da-edicion-limitada",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-superman-los-mejores-del-mundo-07-eclipso-total",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-02-somos-ayer",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/superman-legion-de-darkseid-camino-a-dc-ko",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-03-el-acto-omega",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/x-men-05-amanecer-x-parte-1-con-resena-en-youtube",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/spider-man-la-sombra-de-la-arana",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/daredevil-04-el-fin-del-infierno",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/daredevil-el-hombre-sin-miedo-must-havetapa-dura",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/ultimate-invasion",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/avengers-01-la-ciudad-imposible-parte-01-nueva-serie",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/planeta/hay-algo-matando-ninos-01",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/planeta/hay-algo-matando-ninos-02",
-        "https://www.lacasitadelcoleccionista.com.ar/comics/europeo-importado/ecc/green-arrow-el-arco-del-cazador-mike-grellon-demand"
-    ],
+links_dict = {"Cómics (La Casita)": [
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/crisis-en-tierras-infinitas-papel-obra",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/absolute-flash-vol01",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/universo-batman",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-historias-de-fantasmas",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-de-scott-snyder-vol05-superpesado",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-estado-de-miedo",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ano-dos",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/crisis-oscura-en-tierras-infinitas-vol03-tomo-final",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-caballero-blanco-del-futuro",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-knightfall-la-caida-del-caballero-vol-01",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-inc",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-shaman",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-presa",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/aquaman-ano-uno",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ano-tres",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-el-regreso-del-caballero-oscuro-tercera-ed",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-leyendas-del-caballero-oscuro-gotico",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-y-los-outsiders",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-01-el-acertijo",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-02-dos-caras",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/wonder-woman-tierra-muerta",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-06-bane",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-la-guerra-de-gotham-camino-a-poder-absoluto",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/titanes-la-reina-de-alas-negras-camino-a-poder-absoluto",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-un-mal-dia-08-ra-s-al-ghul",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-prisiones-oscuras",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/superman-la-casa-de-brainiac-con-comic-de-regalo",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-detective-comics-gotham-nocturna-acto-segundo",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/poder-absoluto",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-poder-absoluto",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-01-en-el-infierno",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/the-ultimates-vol01-cambiando-al-mundo",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/wonder-woman-de-tom-king-01-fuera-de-la-ley",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-detective-comics-04-gotham-nocturna-interludio",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/titanes-mundo-bestia-camino-a-poder-absoluto",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-una-muerte-en-la-familia-robin-vive",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/ultimate-spider-man-vol-02-the-paper",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-ciudad-moribunda",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/watchmen-2da-edicion-limitada",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/batman-superman-los-mejores-del-mundo-07-eclipso-total",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-02-somos-ayer",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/superman-legion-de-darkseid-camino-a-dc-ko",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/ovni-press-dc/liga-de-la-justicia-ilimitada-03-el-acto-omega",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/x-men-05-amanecer-x-parte-1-con-resena-en-youtube",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/spider-man-la-sombra-de-la-arana",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/daredevil-04-el-fin-del-infierno",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/daredevil-el-hombre-sin-miedo-must-havetapa-dura",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/ultimate-invasion",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/panini-marvel/avengers-01-la-ciudad-imposible-parte-01-nueva-serie",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/planeta/hay-algo-matando-ninos-01",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/planeta/hay-algo-matando-ninos-02",
+    "https://www.lacasitadelcoleccionista.com.ar/comics/europeo-importado/ecc/green-arrow-el-arco-del-cazador-mike-grellon-demand"],
     "Libros (Penguin)": [
         "https://www.penguinlibros.com/ar/grandes-clasicos/384902-libro-crimen-y-castigo-vintage-9789873952890",
         "https://www.penguinlibros.com/ar/ciencia-ficcion/384898-libro-1984-vintange-9789873952852",
         "https://www.penguinlibros.com/ar/grandes-clasicos/393891-libro-un-mundo-feliz-vintage-9789873952913",
-        "https://www.penguinlibros.com/ar/filosofia/352604-libro-meditaciones-9789877371291"
-    ]
-}
+        "https://www.penguinlibros.com/ar/filosofia/352604-libro-meditaciones-9789877371291"]}
 
 final_list = []
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
 
 print("🕷️ Iniciando Scraper Multi-Sitio...")
 print("-----------------------------------")
@@ -168,12 +163,7 @@ for category, links in links_dict.items():
 
                 print(f"✅ {price} | {title[:40]}...")
 
-                final_list.append({
-                    "title": title,
-                    "url": url,
-                    "image": image,
-                    "price": price
-                })
+                final_list.append({"title": title, "url": url, "image": image, "price": price})
 
             else:
                 print(f"❌ Error {response.status_code}: {url}")
