@@ -4,21 +4,6 @@ const comicsData = [{
 	"image": "https://acdn-us.mitiendanube.com/stores/001/393/528/products/doypack_blend-paws-e44e0d69a354cdb63117436885908643-1024-1024.webp",
 	"price": "$ 22.500"
 }, {
-	"title": "Crimen y castigo (Vintage)",
-	"url": "https://www.penguinlibros.com/ar/grandes-clasicos/384902-libro-crimen-y-castigo-vintage-9789873952890",
-	"image": "https://www.penguinlibros.com/ar/6221162-thickbox_default/crimen-y-castigo-vintage.webp",
-	"price": "$ 21.499"
-}, {
-	"title": "1984 (Vintage)",
-	"url": "https://www.penguinlibros.com/ar/ciencia-ficcion/384898-libro-1984-vintange-9789873952852",
-	"image": "https://www.penguinlibros.com/ar/5973322-thickbox_default/1984-vintange.webp",
-	"price": "$ 16.999"
-}, {
-	"title": "Un mundo feliz (Vintage)",
-	"url": "https://www.penguinlibros.com/ar/grandes-clasicos/393891-libro-un-mundo-feliz-vintage-9789873952913",
-	"image": "https://www.penguinlibros.com/ar/6383259-thickbox_default/un-mundo-feliz-vintage.webp",
-	"price": "$ 16.999"
-}, {
 	"title": "Meditaciones",
 	"url": "https://www.penguinlibros.com/ar/filosofia/352604-libro-meditaciones-9789877371291",
 	"image": "https://www.penguinlibros.com/ar/4409158-thickbox_default/meditaciones.webp",
@@ -284,5 +269,6 @@ const comicsData = [{
 	"image": "https://d22fxaf9t8d39k.cloudfront.net/4f76642bbaa782a7783eca131d2cdce69a5902b5f00ba75dd25eaee6a3b0530529948.jpg",
 	"price": "$ 12.000"
 }
+
 
 ];
