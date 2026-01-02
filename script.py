@@ -59,9 +59,6 @@ links_dict = {"Cómics (La Casita)": [
     "https://www.lacasitadelcoleccionista.com.ar/comics/planeta/hay-algo-matando-ninos-02",
     "https://www.lacasitadelcoleccionista.com.ar/comics/europeo-importado/ecc/green-arrow-el-arco-del-cazador-mike-grellon-demand"],
     "Libros (Penguin)": [
-        "https://www.penguinlibros.com/ar/grandes-clasicos/384902-libro-crimen-y-castigo-vintage-9789873952890",
-        "https://www.penguinlibros.com/ar/ciencia-ficcion/384898-libro-1984-vintange-9789873952852",
-        "https://www.penguinlibros.com/ar/grandes-clasicos/393891-libro-un-mundo-feliz-vintage-9789873952913",
         "https://www.penguinlibros.com/ar/filosofia/352604-libro-meditaciones-9789877371291"]}
 
 final_list = []
@@ -81,7 +78,7 @@ def clean_price(raw_price):
 
         # Si es string, limpiar
         if isinstance(raw_price, str):
-            nums = re.sub(r'[^\d,\.]', '', raw_price)  # Quitar letras y simbolos
+            nums = re.sub(r'[^\d,.]', '', raw_price)  # Quitar letras y simbolos
             if not nums: return raw_price
 
             # Normalizar separadores decimales/miles
