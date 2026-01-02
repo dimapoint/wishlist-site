@@ -1,5 +1,9 @@
 const comicsData = [
 	{
+		"title": "Chatear con La Casita del Coleccionista",
+		"url": "http://wa.me/5493547642469",
+		"image": "https://d22fxaf9t8d39k.cloudfront.net/323645f667cf2504fef4a6aba0081882a5f8b814ef653e9910b118862855c63b29948.jpeg",
+	}, {
 		"title": "Meditaciones",
 		"url": "https://www.penguinlibros.com/ar/filosofia/352604-libro-meditaciones-9789877371291",
 		"image": "https://www.penguinlibros.com/ar/4409158-thickbox_default/meditaciones.webp",
